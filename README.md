@@ -47,6 +47,7 @@ See [CHANGELOG.md](CHANGELOG.md), the [engineering harness](harness.md), [MCP + 
         <li><a href="#controlling-neoscaffold-from-other-agents"> ➤ Controlling NeoScaffold from Other Agents 🤖</a></li>
         <li><a href="#building-an-ai-persona-agent"> ➤ Building an AI Persona Agent 🕴️</a></li>
         <li><a href="#custom-extensions-for-more-nodes"> ➤ Custom Extensions for More Nodes 🧩</a></li>
+        <li><a href="#ad-studio"> ➤ Ad Studio 📺</a></li>
         <li><a href="#rules-for-reliable-quality"> ➤ Rules for Reliable Quality 🔍</a></li>
       </ul>
     </li>
@@ -222,6 +223,49 @@ EXTENSION_MAPPINGS = {
 
 ```
 
+
+![-----------------------------------------------------](pictures/aquadivider.png)
+
+### Ad Studio
+
+Ad Studio turns a brand website and a product photo into a grid of static ad creatives. The example workflow fans two input nodes out to 40 styles (claymation, iMessage, a fake X post, headline posters, and several 9:16 story frames) plus a node that cover-crops one still to 1080×1920.
+
+Set `OPENAI_API_KEY` before starting the server. Image generation uses `gpt-image-2` (`images.edit`, so the uploaded product photo is the reference). Brand extraction uses `gpt-4.1-mini` unless `AD_STUDIO_TEXT_MODEL` is set. Override the image model with `AD_STUDIO_IMAGE_MODEL`.
+
+Without a key, the same graph still runs: prompts are composed from the style library and the nodes save clearly labeled placeholder PNGs. That path is what the unit tests and the preview canvas use.
+
+```bash
+cd server
+uv sync
+source .venv/bin/activate
+export OPENAI_API_KEY=sk-...
+python main.py --enable-parallel-execution --max-parallel-nodes 6 --output-directory ./output
+```
+
+Generated stills land in `output/ad_studio/` and are served at `/ad-studio/outputs/<file>.png`. Uploads go to `input/ad_studio/` (`--input-directory` or `NEOSCAFFOLD_INPUT_DIRECTORY`).
+
+In another terminal, start the editor and open the example graph:
+
+```bash
+cd neoscaffold
+npm ci
+npm start
+```
+
+Open `http://localhost:4200/workflow?workflow=http://127.0.0.1:6166/ad-studio/workflows/ad_studio_40.json`.
+
+Switch the toolbar from `SEQ` to `PAR` if the server was not started with `--enable-parallel-execution`, then queue the prompt. Each creative shows the prompt and the still. **Keep** leaves it in the next run, **Discard** mutes the node (mode Never) so it is skipped and the image stays, greyed out, and **Favorite** stores the prompt and image so the next run riffs on those ads. Favorites are collected in the browser when you queue; discarded nodes are not sent.
+
+A quick canvas without the Ember shell is at `http://127.0.0.1:6166/ad-studio/preview`. Placeholder images there are not model output.
+
+Edit styles in `server/custom_extensions/ad_studio/catalog.py`, then regenerate the example graph:
+
+```bash
+cd server
+python -m custom_extensions.ad_studio.build_workflow
+```
+
+The creative result (`prompt`, `image_path`, `width`, `height`, `aspect`) is shaped so a later step can assemble screen recordings. That video pass is not part of this feature.
 
 ![-----------------------------------------------------](pictures/aquadivider.png)
 

@@ -53,6 +53,8 @@ class Server:
             getattr(args, "enable_parallel_execution", False) or False
         )
         self.MAX_PARALLEL_NODES = getattr(args, "max_parallel_nodes", 8) or 8
+        self.output_directory = getattr(args, "output_directory", None)
+        self.input_directory = getattr(args, "input_directory", None)
 
         if logger:
             self.logger = logger
@@ -350,6 +352,10 @@ class Server:
             # Rules
             for name, value in module.EXTENSION_MAPPINGS.get("rules", {}).items():
                 server.rules[name] = value
+
+            # Optional extension hook for routes and UI payloads.
+            if hasattr(module, "register"):
+                module.register(server)
 
         else:
             server.logger.warning(

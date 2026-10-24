@@ -1221,6 +1221,25 @@
       }, 1000);
     },
 
+    async loadWorkflowFromQuery() {
+      if (typeof window === 'undefined' || !window.location || !window.location.search) {
+        return null;
+      }
+      const workflowUrl = new URLSearchParams(window.location.search).get('workflow');
+      if (!workflowUrl) {
+        return null;
+      }
+      const allowed = /^https?:\/\//i.test(workflowUrl) || workflowUrl.charAt(0) === '/';
+      if (!allowed) {
+        throw new Error('workflow URL must be http(s) or a site path');
+      }
+      const response = await fetch(workflowUrl);
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status + ' for ' + workflowUrl);
+      }
+      return await response.json();
+    },
+
     async initializeState() {
       let scope = this;
 
@@ -1234,23 +1253,41 @@
       // Load previous workflow
       let restored = false;
       try {
-        if (activeWorkflowChecksum) {
-          workflowString = await scope.storage.getItem('workflow', activeWorkflowChecksum);
-        } else {
-          workflowString = await scope.storage.getItem('workflow', 'workflow');
+        const queryWorkflow = await scope.loadWorkflowFromQuery();
+        if (queryWorkflow) {
+          scope.import(queryWorkflow);
+          restored = true;
+          setTimeout(function() {
+            if (scope.graph && scope.graph._nodes && scope.graph._nodes.length) {
+              scope.fitViewToNodes(scope.graph._nodes);
+            }
+          }, 200);
         }
+      } catch (queryError) {
+        console.error('Could not load workflow from the URL', queryError);
+        alert('Could not load workflow from the URL: ' + queryError.message);
+      }
 
-        if (!workflowString) {
-          throw new Error("initializing workflow");
+      if (!restored) {
+        try {
+          if (activeWorkflowChecksum) {
+            workflowString = await scope.storage.getItem('workflow', activeWorkflowChecksum);
+          } else {
+            workflowString = await scope.storage.getItem('workflow', 'workflow');
+          }
+
+          if (!workflowString) {
+            throw new Error("initializing workflow");
+          }
+          const workflow = JSON.parse(workflowString);
+
+          scope.import(workflow);
+
+          restored = true;
+        } catch (err) {
+          alert('Loading default workflow due to: ' + err.message);
+          console.error("Error loading previous workflow", err);
         }
-        const workflow = JSON.parse(workflowString);
-
-        scope.import(workflow);
-
-        restored = true;
-      } catch (err) {
-        alert('Loading default workflow due to: ' + err.message);
-        console.error("Error loading previous workflow", err);
       }
 
       // We failed to restore a workflow so load the default
