@@ -1,0 +1,821 @@
+{
+  "last_node_id": 10,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "ad_studio/AdBrandBrief",
+      "title": "BRAND WEBSITE + PRODUCT NAME",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        480,
+        280
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "brand_brief",
+          "type": "*",
+          "links": [
+            1,
+            3,
+            5,
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "brief": {
+            "brand_name": "Luma",
+            "product_name": "Luma Serum",
+            "tagline": "Glow, without the guesswork",
+            "tone": "confident, witty, a little contrarian",
+            "colors": [
+              "#F4C7C3",
+              "#1A1A1A",
+              "#F7F4EF"
+            ],
+            "claims": [
+              "97% saw brighter skin in 14 days",
+              "fragrance free",
+              "dermatologist tested"
+            ],
+            "audience": "skeptical skincare shoppers 25-40",
+            "category": "facial serum",
+            "differentiators": [
+              "one-pump dose",
+              "glass dropper bottle"
+            ],
+            "do_not_say": [
+              "cure",
+              "medical treatment"
+            ],
+            "source_url": "https://example.com",
+            "extractor": "sample"
+          }
+        }
+      },
+      "widgets_values": [
+        "https://example.com",
+        "Luma Serum",
+        ""
+      ],
+      "color": "#7AA2FF",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 2,
+      "type": "ad_studio/AdProductImage",
+      "title": "PRODUCT IMAGE",
+      "pos": [
+        40,
+        360
+      ],
+      "size": [
+        480,
+        300
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "product_image",
+          "type": "product_image",
+          "links": [
+            2,
+            4,
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "preview_url": "/ad-studio/placeholders/product.png",
+          "image_url": "/ad-studio/placeholders/product.png"
+        }
+      },
+      "widgets_values": [
+        "/ad-studio/placeholders/product.png"
+      ],
+      "color": "#FF7AD9",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 3,
+      "type": "ad_studio/AdCreative",
+      "title": "CLAYMATION",
+      "pos": [
+        620,
+        40
+      ],
+      "size": [
+        320,
+        530
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "brand_brief",
+          "type": "brand_brief",
+          "link": 1,
+          "label": "brand"
+        },
+        {
+          "name": "product_image",
+          "type": "product_image",
+          "link": 2,
+          "label": "product"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ad",
+          "type": "ad_image",
+          "links": [
+            7,
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "preview_url": "/ad-studio/placeholders/claymation.png",
+          "prompt": "Create one static advertisement still, not a collage and not a video frame sequence.\nStyle: Claymation.\nStop-motion claymation still of Luma Serum by Luma. The real product sits in a tactile clay world with fingerprint texture, tiny fabric set, soft studio light, and a handmade shadow. Tone: confident, witty, a little contrarian. Audience: skeptical skincare shoppers 25-40.\nThe attached reference photo is the real product. Keep its shape, label, logo, and colors recognizable. Do not redesign the packaging.\nBrand: Luma. Product: Luma Serum.\nTone: confident, witty, a little contrarian. Audience: skeptical skincare shoppers 25-40.\nAny interface text should be short, legible, and in the brand tone.\nDo not say: cure, medical treatment.\nNo favorite ads yet. Invent a fresh execution of this style.\nFresh take: social studio dry run.\nModel label for the workflow is GPT IMAGE 2. Do not print that label unless the style asks for it.",
+          "placeholder": true,
+          "favorite": true,
+          "discarded": false,
+          "style_id": "claymation",
+          "style_name": "Claymation",
+          "model": "placeholder"
+        }
+      },
+      "widgets_values": [
+        "claymation",
+        "style",
+        "no",
+        "[]",
+        ""
+      ],
+      "color": "#E39B6A",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 4,
+      "type": "ad_studio/AdCreative",
+      "title": "DON'T BUY THIS",
+      "pos": [
+        980,
+        40
+      ],
+      "size": [
+        320,
+        530
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "brand_brief",
+          "type": "brand_brief",
+          "link": 3,
+          "label": "brand"
+        },
+        {
+          "name": "product_image",
+          "type": "product_image",
+          "link": 4,
+          "label": "product"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ad",
+          "type": "ad_image",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "preview_url": "/ad-studio/placeholders/dont_buy_this.png",
+          "prompt": "Create one static advertisement still, not a collage and not a video frame sequence.\nStyle: Don't Buy This.\nBold contrarian poster. Huge condensed headline, the real product dead center, lots of negative space, black and #F4C7C3, #1A1A1A, #F7F4EF. The joke is confidence: we are daring you not to want it. Category: facial serum.\nThe attached reference photo is the real product. Keep its shape, label, logo, and colors recognizable. Do not redesign the packaging.\nBrand: Luma. Product: Luma Serum.\nTone: confident, witty, a little contrarian. Audience: skeptical skincare shoppers 25-40.\nRender this headline spelled exactly: \"DON'T BUY THIS Luma Serum\".\nDo not say: cure, medical treatment.\nNo favorite ads yet. Invent a fresh execution of this style.\nFresh take: social studio dry run.\nModel label for the workflow is GPT IMAGE 2. Do not print that label unless the style asks for it.",
+          "placeholder": true,
+          "favorite": false,
+          "discarded": false,
+          "style_id": "dont_buy_this",
+          "style_name": "Don't Buy This",
+          "model": "placeholder"
+        }
+      },
+      "widgets_values": [
+        "dont_buy_this",
+        "style",
+        "no",
+        "[]",
+        ""
+      ],
+      "color": "#FF5A5A",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 5,
+      "type": "ad_studio/AdCreative",
+      "title": "FAKE TWEET",
+      "pos": [
+        1340,
+        40
+      ],
+      "size": [
+        320,
+        530
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "brand_brief",
+          "type": "brand_brief",
+          "link": 5,
+          "label": "brand"
+        },
+        {
+          "name": "product_image",
+          "type": "product_image",
+          "link": 6,
+          "label": "product"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ad",
+          "type": "ad_image",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "preview_url": "/ad-studio/placeholders/fake_tweet.png",
+          "prompt": "Create one static advertisement still, not a collage and not a video frame sequence.\nStyle: Fake Tweet.\nA realistic X post screenshot. A sharp, slightly unhinged tweet about Luma Serum from Luma, with the product photo attached below the text. Include a display name, handle, and like count. Tone: confident, witty, a little contrarian.\nThe attached reference photo is the real product. Keep its shape, label, logo, and colors recognizable. Do not redesign the packaging.\nBrand: Luma. Product: Luma Serum.\nTone: confident, witty, a little contrarian. Audience: skeptical skincare shoppers 25-40.\nAny interface text should be short, legible, and in the brand tone.\nDo not say: cure, medical treatment.\nNo favorite ads yet. Invent a fresh execution of this style.\nFresh take: social studio dry run.\nModel label for the workflow is GPT IMAGE 2. Do not print that label unless the style asks for it.",
+          "placeholder": true,
+          "favorite": false,
+          "discarded": true,
+          "style_id": "fake_tweet",
+          "style_name": "Fake Tweet",
+          "model": "placeholder"
+        }
+      },
+      "widgets_values": [
+        "fake_tweet",
+        "style",
+        "no",
+        "[]",
+        ""
+      ],
+      "color": "#8EC8FF",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 6,
+      "type": "ad_studio/AdFrame916",
+      "title": "TO 9:16",
+      "pos": [
+        620,
+        620
+      ],
+      "size": [
+        320,
+        560
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "image",
+          "type": "ad_image",
+          "link": 7,
+          "label": "ad"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "vertical",
+          "type": "ad_image",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "ad_studio": {
+          "placeholder": true,
+          "favorite": true,
+          "style_name": "9:16 conversion"
+        }
+      },
+      "widgets_values": [
+        "cover"
+      ],
+      "color": "#7DFFB3",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 7,
+      "type": "social_studio/SocialAccountSelect",
+      "title": "ACCOUNT SELECT",
+      "pos": [
+        40,
+        720
+      ],
+      "size": [
+        340,
+        280
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "accounts",
+          "type": "account_set",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "tag",
+        "luma",
+        ""
+      ],
+      "color": "#F0C36A",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 8,
+      "type": "social_studio/SocialCaptionVariations",
+      "title": "CAPTION VARIATIONS",
+      "pos": [
+        1760,
+        80
+      ],
+      "size": [
+        360,
+        420
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "creative",
+          "type": "ad_image",
+          "link": 8
+        },
+        {
+          "name": "creative_2",
+          "type": "ad_image",
+          "link": 9
+        },
+        {
+          "name": "creative_3",
+          "type": "ad_image",
+          "link": 10
+        },
+        {
+          "name": "creative_4",
+          "type": "ad_image",
+          "link": 11
+        },
+        {
+          "name": "brand_brief",
+          "type": "brand_brief",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "pack",
+          "type": "caption_pack",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "social_studio": {}
+      },
+      "widgets_values": [
+        "3",
+        "",
+        "",
+        "auto",
+        "all_kept",
+        "[{\"index\": 0, \"favorite\": true, \"discarded\": false}, {\"index\": 1, \"favorite\": false, \"discarded\": false}, {\"index\": 2, \"favorite\": true, \"discarded\": false}, {\"index\": 3, \"favorite\": false, \"discarded\": true}]"
+      ],
+      "color": "#C9A6FF",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 9,
+      "type": "social_studio/SocialDistribute",
+      "title": "DISTRIBUTE / POST",
+      "pos": [
+        2200,
+        80
+      ],
+      "size": [
+        420,
+        480
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "creatives",
+          "type": "caption_pack",
+          "link": 14,
+          "label": "creatives"
+        },
+        {
+          "name": "accounts",
+          "type": "account_set",
+          "link": 12,
+          "label": "accounts"
+        },
+        {
+          "name": "captions",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "plan",
+          "type": "post_plan",
+          "links": [
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "social_studio": {
+          "dry_run": true
+        }
+      },
+      "widgets_values": [
+        "round-robin",
+        "yes",
+        "",
+        "90",
+        "15",
+        "all_kept",
+        "platform_default",
+        "[]"
+      ],
+      "color": "#7DFFB3",
+      "bgcolor": "#1B1E27"
+    },
+    {
+      "id": 10,
+      "type": "social_studio/SocialPostLog",
+      "title": "POST LOG",
+      "pos": [
+        2700,
+        80
+      ],
+      "size": [
+        420,
+        320
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "out_rules",
+          "type": "rule_group",
+          "link": null,
+          "label": ""
+        },
+        {
+          "name": "plan",
+          "type": "post_plan",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "log",
+          "type": "post_log",
+          "links": null,
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "20"
+      ],
+      "color": "#8EB4FF",
+      "bgcolor": "#1B1E27"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      2,
+      "brand_brief"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      3,
+      "product_image"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      2,
+      "brand_brief"
+    ],
+    [
+      4,
+      2,
+      0,
+      4,
+      3,
+      "product_image"
+    ],
+    [
+      5,
+      1,
+      0,
+      5,
+      2,
+      "brand_brief"
+    ],
+    [
+      6,
+      2,
+      0,
+      5,
+      3,
+      "product_image"
+    ],
+    [
+      7,
+      3,
+      0,
+      6,
+      2,
+      "ad_image"
+    ],
+    [
+      8,
+      3,
+      0,
+      8,
+      2,
+      "ad_image"
+    ],
+    [
+      9,
+      4,
+      0,
+      8,
+      3,
+      "ad_image"
+    ],
+    [
+      10,
+      6,
+      0,
+      8,
+      4,
+      "ad_image"
+    ],
+    [
+      11,
+      5,
+      0,
+      8,
+      5,
+      "ad_image"
+    ],
+    [
+      12,
+      7,
+      0,
+      9,
+      3,
+      "account_set"
+    ],
+    [
+      13,
+      1,
+      0,
+      8,
+      6,
+      "brand_brief"
+    ],
+    [
+      14,
+      8,
+      0,
+      9,
+      2,
+      "caption_pack"
+    ],
+    [
+      15,
+      9,
+      0,
+      10,
+      2,
+      "post_plan"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "AD STUDIO OUTPUT",
+      "bounding": [
+        590,
+        10,
+        1100,
+        1200
+      ],
+      "color": "#6D7CFF",
+      "font_size": 24
+    },
+    {
+      "title": "SOCIAL STUDIO  DRY RUN",
+      "bounding": [
+        1720,
+        20,
+        1460,
+        620
+      ],
+      "color": "#3DDC97",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "social_studio": {
+      "description": "Kept and favorited Ad Studio creatives go to caption variations, then DISTRIBUTE / POST with dry run on. The discarded creative is wired and skipped. Accounts come from the luma tag."
+    }
+  },
+  "version": 0.4
+}
